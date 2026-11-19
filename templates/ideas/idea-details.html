@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Idea Details | College Innovation Hub</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">College Innovation Hub</div>
+
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('ideas') }}">Explore Ideas</a>
+            <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+
+        <article class="details-card">
+
+            <h1>{{ idea.title }}</h1>
+
+            <p>
+                <strong>Category:</strong>
+                {{ idea.category }}
+            </p>
+
+            <p>
+                <strong>Submitted by:</strong>
+                {{ idea.student_name }}
+            </p>
+
+            <hr>
+
+            <section>
+                <h2>Problem Statement</h2>
+                <p>{{ idea.problem }}</p>
+            </section>
+
+            <section>
+                <h2>Proposed Solution</h2>
+                <p>{{ idea.solution }}</p>
+            </section>
+
+            <section>
+                <h2>Detailed Description</h2>
+                <p>{{ idea.description }}</p>
+            </section>
+
+            <section>
+                <h2>Current Status</h2>
+                <p class="status-badge">{{ idea.status }}</p>
+            </section>
+
+            {% if idea.faculty_feedback %}
+                <section>
+                    <h2>Faculty Feedback</h2>
+                    <p>{{ idea.faculty_feedback }}</p>
+                </section>
+            {% endif %}
+
+            <div class="button-group">
+
+                <a href="{{ url_for('ideas') }}" class="btn secondary-btn">
+                    Back to Ideas
+                </a>
+
+                {% if session.get('user_id') and session.get('user_role') == 'student' %}
+                    {% if idea.status == 'Approved' %}
+                        <a
+                            href="{{ url_for('collaboration', idea_id=idea.id) }}"
+                            class="btn"
+                        >
+                            Request Collaboration
+                        </a>
+                    {% endif %}
+                {% endif %}
+
+            </div>
+
+        </article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 College Idea Innovation Hub.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+
+</body>
+</html>

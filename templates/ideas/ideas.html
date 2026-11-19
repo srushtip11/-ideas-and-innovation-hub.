@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explore Ideas | College Innovation Hub</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">College Innovation Hub</div>
+
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('ideas') }}">Explore Ideas</a>
+            <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+
+        <section class="welcome-section">
+            <h1>Explore Innovative Ideas</h1>
+
+            <p>
+                Discover creative ideas submitted by students
+                and find opportunities to collaborate.
+            </p>
+        </section>
+
+        <section class="search-section">
+            <label for="ideaSearch">Search Ideas</label>
+
+            <input
+                type="search"
+                id="ideaSearch"
+                placeholder="Search by idea title or category..."
+            >
+        </section>
+
+        {% if ideas %}
+
+            <div class="idea-grid" id="ideaGrid">
+
+                {% for idea in ideas %}
+
+                    <article
+                        class="idea-card searchable-idea"
+                        data-title="{{ idea.title|lower }}"
+                        data-category="{{ idea.category|lower }}"
+                    >
+
+                        <h2>{{ idea.title }}</h2>
+
+                        <p>
+                            <strong>Category:</strong>
+                            {{ idea.category }}
+                        </p>
+
+                        <p>
+                            <strong>Problem:</strong>
+                            {{ idea.problem }}
+                        </p>
+
+                        <p>
+                            <strong>Submitted by:</strong>
+                            {{ idea.student_name }}
+                        </p>
+
+                        <a
+                            href="{{ url_for('idea_details', idea_id=idea.id) }}"
+                            class="btn"
+                        >
+                            View Details
+                        </a>
+
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+            <p id="noSearchResults" hidden>
+                No ideas match your search.
+            </p>
+
+        {% else %}
+
+            <div class="empty-state">
+                <h2>No approved ideas available yet</h2>
+
+                <p>
+                    Approved student ideas will appear here.
+                    Check back later for new innovations.
+                </p>
+            </div>
+
+        {% endif %}
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 College Idea Innovation Hub.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/ideas.js"></script>
+
+</body>
+</html>

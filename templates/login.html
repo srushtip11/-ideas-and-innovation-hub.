@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - College Innovation Hub</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">College Innovation Hub</div>
+
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        </nav>
+    </header>
+
+    <main class="form-container">
+
+        <h1>Welcome Back</h1>
+
+        <p>Log in to your account to continue.</p>
+
+        {% if error %}
+            <div class="message error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        {% if success %}
+            <div class="message success-message">
+                {{ success }}
+            </div>
+        {% endif %}
+
+        <form
+            method="POST"
+            action="{{ url_for('login') }}"
+            data-validate
+        >
+
+            <label for="email">Email Address</label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                required
+            >
+
+            <label for="password">Password</label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                required
+            >
+
+            <button type="submit" class="btn">
+                Login
+            </button>
+
+        </form>
+
+        <p>
+            Don't have an account?
+            <a href="{{ url_for('register') }}">Register here</a>
+        </p>
+
+    </main>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/validation.js"></script>
+
+</body>
+</html>

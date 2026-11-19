@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us - College Innovation Hub</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">College Innovation Hub</div>
+
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('ideas') }}">Explore Ideas</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <a href="{{ url_for('login') }}">Login</a>
+        </nav>
+    </header>
+
+    <main class="page-container">
+
+        <h1>About Our Innovation Hub</h1>
+
+        <p>
+            The College Idea Innovation Hub is a digital platform
+            designed to encourage creativity, innovation, and teamwork
+            among college students.
+        </p>
+
+        <h2>Our Mission</h2>
+
+        <p>
+            Our mission is to provide students with a platform where
+            they can submit innovative ideas, receive feedback from
+            faculty members, and collaborate with other students.
+        </p>
+
+        <h2>Our Objectives</h2>
+
+        <ul>
+            <li>Encourage students to think creatively.</li>
+            <li>Provide a platform for submitting innovative ideas.</li>
+            <li>Promote collaboration among students.</li>
+            <li>Allow faculty members to review student ideas.</li>
+            <li>Support the development of useful projects.</li>
+        </ul>
+
+        <a href="{{ url_for('register') }}" class="btn">
+            Join the Innovation Hub
+        </a>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 College Idea Innovation Hub.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Collaborate | College Innovation Hub</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">College Innovation Hub</div>
+
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('ideas') }}">Explore Ideas</a>
+            <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <main class="form-container">
+
+        <h1>Request Collaboration</h1>
+
+        <p>
+            Interested in working on this idea?
+            Introduce yourself and explain how you would like to contribute.
+        </p>
+
+        <div class="idea-summary">
+            <h2>{{ idea.title }}</h2>
+
+            <p>
+                <strong>Category:</strong>
+                {{ idea.category }}
+            </p>
+
+            <p>
+                <strong>Submitted by:</strong>
+                {{ idea.student_name }}
+            </p>
+        </div>
+
+        {% if error %}
+            <div class="message error-message">{{ error }}</div>
+        {% endif %}
+
+        {% if success %}
+            <div class="message success-message">{{ success }}</div>
+        {% endif %}
+
+        <form
+            method="POST"
+            action="{{ url_for('collaboration', idea_id=idea.id) }}"
+            data-validate
+        >
+
+            <label for="message">Your Collaboration Message</label>
+
+            <textarea
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="Explain your interest and how you can contribute..."
+                required
+            ></textarea>
+
+            <button type="submit" class="btn">
+                Send Collaboration Request
+            </button>
+
+            <a
+                href="{{ url_for('idea_details', idea_id=idea.id) }}"
+                class="btn secondary-btn"
+            >
+                Back to Idea
+            </a>
+
+        </form>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 College Idea Innovation Hub.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/validation.js"></script>
+
+</body>
+</html>

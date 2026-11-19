@@ -1,0 +1,107 @@
+/* ===================================
+   TABLETS
+=================================== */
+
+@media (max-width: 1000px) {
+
+    .navbar {
+        padding: 16px 4%;
+    }
+
+    .navbar nav {
+        gap: 12px;
+    }
+
+    .feature-container,
+    .idea-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stats-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+/* ===================================
+   MOBILE PHONES
+=================================== */
+
+@media (max-width: 650px) {
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px 5%;
+    }
+
+    .navbar nav {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.45rem;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 60px 6%;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .feature-container,
+    .idea-grid,
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-container {
+        margin: 25px 15px;
+        padding: 22px;
+    }
+
+    .dashboard-container,
+    .page-container {
+        padding: 0 16px;
+        margin-top: 25px;
+    }
+
+    .details-card {
+        padding: 22px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .btn {
+        max-width: 100%;
+    }
+
+    .button-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button-group .btn {
+        width: 100%;
+        margin-right: 0;
+    }
+
+}

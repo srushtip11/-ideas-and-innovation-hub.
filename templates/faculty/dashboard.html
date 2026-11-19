@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Faculty Dashboard | Innovation Hub</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">College Innovation Hub</div>
+
+        <nav>
+            <a href="{{ url_for('faculty_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('pending_ideas') }}">Pending Ideas</a>
+            <a href="{{ url_for('approved_ideas') }}">Approved Ideas</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+
+        <section class="welcome-section">
+            <h1>Faculty Dashboard</h1>
+
+            <p>
+                Welcome, {{ session.get('user_name', 'Faculty Member') }}!
+                Review submissions and help students improve their ideas.
+            </p>
+        </section>
+
+        <section class="stats-container">
+
+            <div class="stat-card">
+                <h3>Total Ideas</h3>
+                <p class="stat-number">{{ total_ideas|default(0) }}</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Pending Reviews</h3>
+                <p class="stat-number">{{ pending_count|default(0) }}</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Approved Ideas</h3>
+                <p class="stat-number">{{ approved_count|default(0) }}</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Registered Students</h3>
+                <p class="stat-number">{{ total_students|default(0) }}</p>
+            </div>
+
+        </section>
+
+        <section class="dashboard-section">
+
+            <h2>Manage Student Ideas</h2>
+
+            <div class="feature-container">
+
+                <div class="feature-card">
+                    <h3>Pending Ideas</h3>
+
+                    <p>
+                        Review new submissions and provide feedback.
+                    </p>
+
+                    <a href="{{ url_for('pending_ideas') }}" class="btn">
+                        Review Ideas
+                    </a>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Approved Ideas</h3>
+
+                    <p>
+                        View the ideas approved by faculty members.
+                    </p>
+
+                    <a href="{{ url_for('approved_ideas') }}" class="btn">
+                        View Approved Ideas
+                    </a>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 College Idea Innovation Hub.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/dashboard.js"></script>
+
+</body>
+</html>

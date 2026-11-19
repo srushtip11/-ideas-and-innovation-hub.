@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register - College Innovation Hub</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">College Innovation Hub</div>
+
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+        </nav>
+    </header>
+
+    <main class="form-container">
+
+        <h1>Create Your Account</h1>
+
+        <p>Join the College Idea Innovation Hub.</p>
+
+        {% if error %}
+            <div class="message error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form
+            method="POST"
+            action="{{ url_for('register') }}"
+            data-validate
+        >
+
+            <label for="name">Full Name</label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                required
+            >
+
+            <label for="email">Email Address</label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                required
+            >
+
+            <label for="department">Department</label>
+
+            <input
+                type="text"
+                id="department"
+                name="department"
+                placeholder="For example, MCA"
+                required
+            >
+
+            <label for="password">Create Password</label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                minlength="8"
+                required
+            >
+
+            <button type="submit" class="btn">
+                Register
+            </button>
+
+        </form>
+
+        <p>
+            Already have an account?
+            <a href="{{ url_for('login') }}">Login here</a>
+        </p>
+
+    </main>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/validation.js"></script>
+
+</body>
+</html>

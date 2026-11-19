@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Submit an Idea | Innovation Hub</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">College Innovation Hub</div>
+
+        <nav>
+            <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('my_ideas') }}">My Ideas</a>
+            <a href="{{ url_for('student_profile') }}">My Profile</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <main class="form-container">
+
+        <h1>Submit Your Innovative Idea</h1>
+
+        <p>
+            Explain your idea clearly so faculty members can review it.
+        </p>
+
+        {% if error %}
+            <div class="message error-message">{{ error }}</div>
+        {% endif %}
+
+        <form
+            method="POST"
+            action="{{ url_for('submit_idea') }}"
+            data-validate
+        >
+
+            <label for="title">Idea Title</label>
+
+            <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Enter a short title"
+                required
+            >
+
+            <label for="category">Idea Category</label>
+
+            <select id="category" name="category" required>
+                <option value="">Select a category</option>
+                <option value="Technology">Technology</option>
+                <option value="Education">Education</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Environment">Environment</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Business">Business</option>
+                <option value="Social Innovation">Social Innovation</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="problem">Problem Statement</label>
+
+            <textarea
+                id="problem"
+                name="problem"
+                rows="4"
+                placeholder="What problem are you trying to solve?"
+                required
+            ></textarea>
+
+            <label for="solution">Proposed Solution</label>
+
+            <textarea
+                id="solution"
+                name="solution"
+                rows="4"
+                placeholder="How will your idea solve the problem?"
+                required
+            ></textarea>
+
+            <label for="description">Detailed Description</label>
+
+            <textarea
+                id="description"
+                name="description"
+                rows="6"
+                placeholder="Describe how your idea will work."
+                required
+            ></textarea>
+
+            <button type="submit" class="btn">
+                Submit Idea
+            </button>
+
+            <a href="{{ url_for('student_dashboard') }}" class="btn secondary-btn">
+                Cancel
+            </a>
+
+        </form>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 College Idea Innovation Hub.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/validation.js"></script>
+    <script src="/js/ideas.js"></script>
+
+</body>
+</html>

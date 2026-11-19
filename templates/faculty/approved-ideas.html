@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Approved Ideas | Faculty</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">College Innovation Hub</div>
+
+        <nav>
+            <a href="{{ url_for('faculty_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('pending_ideas') }}">Pending Ideas</a>
+            <a href="{{ url_for('approved_ideas') }}">Approved Ideas</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+
+        <section class="welcome-section">
+            <h1>Approved Ideas</h1>
+
+            <p>
+                View the ideas that have been approved by faculty members.
+            </p>
+        </section>
+
+        {% if ideas %}
+
+            <div class="idea-grid">
+
+                {% for idea in ideas %}
+
+                    <article class="idea-card">
+
+                        <h2>{{ idea.title }}</h2>
+
+                        <p>
+                            <strong>Category:</strong>
+                            {{ idea.category }}
+                        </p>
+
+                        <p>
+                            <strong>Submitted by:</strong>
+                            {{ idea.student_name }}
+                        </p>
+
+                        <p>
+                            <strong>Problem:</strong>
+                            {{ idea.problem }}
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+                            {{ idea.status }}
+                        </p>
+
+                        <a
+                            href="{{ url_for('idea_review', idea_id=idea.id) }}"
+                            class="btn"
+                        >
+                            View Idea
+                        </a>
+
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-state">
+                <h2>No Approved Ideas Yet</h2>
+
+                <p>
+                    Approved ideas will appear here.
+                </p>
+            </div>
+
+        {% endif %}
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 College Idea Innovation Hub.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+
+</body>
+</html>

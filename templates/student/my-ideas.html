@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Ideas | Innovation Hub</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">College Innovation Hub</div>
+
+        <nav>
+            <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('submit_idea') }}">Submit Idea</a>
+            <a href="{{ url_for('student_profile') }}">My Profile</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+
+        <section class="welcome-section">
+            <h1>My Ideas</h1>
+            <p>Track and manage the ideas you have submitted.</p>
+        </section>
+
+        {% if ideas %}
+
+            <div class="idea-grid">
+
+                {% for idea in ideas %}
+
+                    <div class="idea-card">
+
+                        <h3>{{ idea.title }}</h3>
+
+                        <p>
+                            <strong>Category:</strong>
+                            {{ idea.category }}
+                        </p>
+
+                        <p>
+                            <strong>Problem:</strong>
+                            {{ idea.problem }}
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+                            <span class="status-badge">
+                                {{ idea.status }}
+                            </span>
+                        </p>
+
+                        {% if idea.faculty_feedback %}
+                            <p>
+                                <strong>Faculty Feedback:</strong>
+                                {{ idea.faculty_feedback }}
+                            </p>
+                        {% endif %}
+
+                        <a href="{{ url_for('idea_details', idea_id=idea.id) }}">
+                            View Full Idea
+                        </a>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-state">
+                <h2>You haven't submitted any ideas yet.</h2>
+
+                <p>
+                    Submit your first idea to get started.
+                </p>
+
+                <a href="{{ url_for('submit_idea') }}" class="btn">
+                    Submit an Idea
+                </a>
+            </div>
+
+        {% endif %}
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 College Idea Innovation Hub.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/dashboard.js"></script>
+
+</body>
+</html>

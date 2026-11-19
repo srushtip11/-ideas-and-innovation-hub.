@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Review Idea | Faculty</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">College Innovation Hub</div>
+
+        <nav>
+            <a href="{{ url_for('faculty_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('pending_ideas') }}">Pending Ideas</a>
+            <a href="{{ url_for('approved_ideas') }}">Approved Ideas</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+
+        <article class="details-card">
+
+            <h1>Review Student Idea</h1>
+
+            <h2>{{ idea.title }}</h2>
+
+            <p>
+                <strong>Category:</strong>
+                {{ idea.category }}
+            </p>
+
+            <p>
+                <strong>Submitted by:</strong>
+                {{ idea.student_name }}
+            </p>
+
+            <h3>Problem Statement</h3>
+            <p>{{ idea.problem }}</p>
+
+            <h3>Proposed Solution</h3>
+            <p>{{ idea.solution }}</p>
+
+            <h3>Detailed Description</h3>
+            <p>{{ idea.description }}</p>
+
+            <p>
+                <strong>Current Status:</strong>
+                {{ idea.status }}
+            </p>
+
+            <hr>
+
+            {% if error %}
+                <div class="message error-message">{{ error }}</div>
+            {% endif %}
+
+            <form
+                method="POST"
+                action="{{ url_for('idea_review', idea_id=idea.id) }}"
+                data-validate
+            >
+
+                <label for="status">Review Decision</label>
+
+                <select id="status" name="status" required>
+                    <option value="">Select decision</option>
+                    <option value="Approved">Approve</option>
+                    <option value="Rejected">Reject</option>
+                    <option value="Pending">Keep Pending</option>
+                </select>
+
+                <label for="faculty_feedback">Faculty Feedback</label>
+
+                <textarea
+                    id="faculty_feedback"
+                    name="faculty_feedback"
+                    rows="5"
+                    placeholder="Enter feedback for the student..."
+                    required
+                ></textarea>
+
+                <button type="submit" class="btn">
+                    Submit Review
+                </button>
+
+                <a
+                    href="{{ url_for('pending_ideas') }}"
+                    class="btn secondary-btn"
+                >
+                    Back to Pending Ideas
+                </a>
+
+            </form>
+
+        </article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 College Idea Innovation Hub.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/dashboard.js"></script>
+
+</body>
+</html>
